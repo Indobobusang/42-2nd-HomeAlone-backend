@@ -1,0 +1,39 @@
+{
+  "name": "42-2nd-homealone-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wecode-bootcamp-korea/42-2nd-HomeAlone-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wecode-bootcamp-korea/42-2nd-HomeAlone-backend/issues"
+  },
+  "homepage": "https://github.com/wecode-bootcamp-korea/42-2nd-HomeAlone-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.1.2",
+    "typeorm": "^0.3.12"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
+  }
+}
