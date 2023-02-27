@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const routes = require("./routes");
+const { globalErrorHandler } = require("./utils/errorHandler");
 
 const createApp = () => {
   const app = express();
@@ -12,6 +13,7 @@ const createApp = () => {
   app.use(morgan("dev"));
 
   app.use(routes);
+  app.use(globalErrorHandler);
 
   return app;
 };
