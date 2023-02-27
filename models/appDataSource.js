@@ -9,15 +9,6 @@ const appDataSource = new DataSource({
   database: process.env.DB_DATABASE,
 });
 
-appDataSource
-  .initialize()
-  .then(() => {
-    console.log("Data server has been initiallized!!");
-  })
-  .catch((err) => {
-    console.log("Failed to connect database", err);
-  });
-
 module.exports = {
   appDataSource,
 };

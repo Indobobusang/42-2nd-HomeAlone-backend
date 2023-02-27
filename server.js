@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { appDataSource } = require("./models/appDataSource");
 
 const { createApp } = require("./app");
 
@@ -10,6 +11,15 @@ app.get("/ping", (req, res) => {
 
 const startServer = async () => {
   const PORT = process.env.PORT;
+
+  await appDataSource
+    .initialize()
+    .then(() => {
+      console.log("Data server has been initiallized!!");
+    })
+    .catch((err) => {
+      console.log("Failed to connect database", err);
+    });
 
   app.listen(PORT, () => {
     console.log(`server is listening on ${PORT}`);
