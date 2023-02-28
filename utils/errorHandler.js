@@ -6,7 +6,7 @@ const catchAsync = (func) => {
 
 const globalErrorHandler = (err, req, res, next) => {
   console.error(err);
-  res.status(err.statuscode || 500).json({ message: err.message || "ERROR" });
+  res.status(err.statusCode || 500).json({ message: err.message || "ERROR" });
 };
 
 module.exports = {
