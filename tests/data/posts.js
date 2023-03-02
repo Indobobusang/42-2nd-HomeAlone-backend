@@ -1,93 +1,3 @@
-const users = [
-  {
-    id: 1,
-    email: "test01@email.com",
-    profile_image: "testProfileImage01.url",
-    password: "password",
-    nickname: "testUser01",
-  },
-  {
-    id: 2,
-    email: "test02@email.com",
-    profile_image: "testProfileImage02.url",
-    password: "password",
-    nickname: "testUser02",
-  },
-  {
-    id: 3,
-    email: "test03@email.com",
-    profile_image: "testProfileImage03.url",
-    password: "password",
-    nickname: "testUser03",
-  },
-];
-
-const categories = [
-  {
-    id: 1,
-    name: "가구",
-  },
-  {
-    id: 2,
-    name: "소품",
-  },
-];
-
-const products = [
-  {
-    id: 1,
-    name: "폭신 헤드 침대",
-    price: 200000.0,
-    discount: 50000.0,
-    image_url: "productBedImage.url",
-    description: "모던하면서 포근한 분위기를 만들어주는 침대입니다",
-    shipping_fee: 3000.0,
-    sales_amount: 0,
-    category_id: 1,
-    created_at: "2023-02-27 20:25:54",
-    updated_at: null,
-  },
-  {
-    id: 2,
-    name: "모던 블랙 테이블",
-    price: 30000.0,
-    discount: 2000.0,
-    image_url: "productTableImage.url",
-    description: "베이직 테이블 세트입니다.",
-    shipping_fee: 0.0,
-    sales_amount: 0,
-    category_id: 1,
-    created_at: "2023-02-27 20:25:54",
-    updated_at: null,
-  },
-  {
-    id: 3,
-    name: "스툴 의자",
-    price: 10000.0,
-    discount: 0.0,
-    image_url: "productChairImage.url",
-    description: "모던 스툴 체어입니다.",
-    shipping_fee: 3000.0,
-    sales_amount: 0,
-    category_id: 1,
-    created_at: "2023-02-27 20:25:54",
-    updated_at: null,
-  },
-  {
-    id: 4,
-    name: "라운드 무드 램프",
-    price: 10000.0,
-    discount: 3000.0,
-    image_url: "productLampImage.url",
-    description: "램프입니다",
-    shipping_fee: 3000.0,
-    sales_amount: 0,
-    category_id: 2,
-    created_at: "2023-02-27 20:25:54",
-    updated_at: null,
-  },
-];
-
 const roomStyles = [
   {
     id: 1,
@@ -259,12 +169,55 @@ const imageCoordinate = [
   },
 ];
 
+const scarps = [
+  {
+    id: 1,
+    user_id: 1,
+    post_id: 1,
+    created_at: "2023-02-27 20:39:28",
+  },
+  {
+    id: 2,
+    user_id: 1,
+    post_id: 2,
+    created_at: "2023-02-27 20:39:28",
+  },
+  {
+    id: 3,
+    user_id: 1,
+    post_id: 3,
+    created_at: "2023-02-27 20:39:28",
+  },
+  {
+    id: 4,
+    user_id: 2,
+    post_id: 1,
+    created_at: "2023-02-27 20:40:27",
+  },
+  {
+    id: 5,
+    user_id: 2,
+    post_id: 2,
+    created_at: "2023-02-27 22:12:51",
+  },
+  {
+    id: 6,
+    user_id: 3,
+    post_id: 1,
+    created_at: "2023-02-27 22:12:53",
+  },
+  {
+    id: 7,
+    user_id: 3,
+    post_id: 4,
+    created_at: "2023-02-27 22:12:53",
+  },
+];
+
 module.exports = {
-  users,
-  categories,
-  products,
   roomStyles,
   posts,
   postImages,
   imageCoordinate,
+  scarps,
 };

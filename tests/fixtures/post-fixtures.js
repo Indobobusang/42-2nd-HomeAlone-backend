@@ -95,9 +95,30 @@ const createImageCoordinates = (imageCoordinateList) => {
   );
 };
 
+const createScraps = (scrapList) => {
+  const data = [];
+
+  for (const scrap of scrapList) {
+    data.push([scrap.id, scrap.user_id, scrap.post_id, scrap.created_at]);
+  }
+
+  return appDataSource.query(
+    `
+    INSERT INTO scraps (
+      id,
+      user_id,
+      post_id,
+      created_at
+    ) VALUES ?
+  `,
+    [data]
+  );
+};
+
 module.exports = {
   createRoomStyles,
   createPosts,
   createPostImages,
   createImageCoordinates,
+  createScraps,
 };

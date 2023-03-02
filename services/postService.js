@@ -2,14 +2,14 @@ const postDao = require("../models/postDao");
 const { DEFAULT_PAGE, DEFAULT_LIMIT } = require("../utils/constants");
 
 const getPosts = async (query) => {
-  const { type, sort, page = DEFAULT_PAGE } = query;
+  const { type, sort, perPage = DEFAULT_LIMIT, page = DEFAULT_PAGE } = query;
 
-  const offset = (page - 1) * DEFAULT_LIMIT;
+  const offset = (page - 1) * perPage;
 
   const filter = {
     type,
     sort,
-    perPage: DEFAULT_LIMIT,
+    perPage,
     offset,
   };
 
