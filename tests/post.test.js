@@ -69,7 +69,6 @@ describe("GET posts", () => {
 
   test("SUCCESS: GET POSTS DETAIL", async () => {
     const response = await request(app).get("/posts/1");
-
     expect(response.statusCode).toEqual(200);
     expect(response.body.data).toEqual(getPostDetail);
   });
