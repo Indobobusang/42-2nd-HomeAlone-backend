@@ -9,6 +9,7 @@ const getPosts = catchAsync(async (req, res) => {
 
 const getPostDetail = catchAsync(async (req, res) => {
   const { postId } = req.params;
+
   const data = await postService.getPostDetail(postId);
 
   return res.status(200).json({ data });
