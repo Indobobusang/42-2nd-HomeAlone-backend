@@ -30,7 +30,10 @@ const createProducts = (productList) => {
       product.image_url,
       product.description,
       product.shipping_fee,
+      product.sales_amount,
       product.category_id,
+      product.created_at,
+      product.updated_at,
     ]);
   }
 
@@ -44,7 +47,10 @@ const createProducts = (productList) => {
       image_url,
       description,
       shipping_fee,
-      category_id
+      sales_amount,
+      category_id,
+      created_at,
+      updated_at
     ) VALUES ?
   `,
     [data]

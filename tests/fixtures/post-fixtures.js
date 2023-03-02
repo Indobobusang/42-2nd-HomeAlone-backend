@@ -28,6 +28,8 @@ const createPosts = (postList) => {
       post.description,
       post.user_id,
       post.room_style_id,
+      post.created_at,
+      post.updated_at,
     ]);
   }
 
@@ -38,7 +40,9 @@ const createPosts = (postList) => {
       title,
       description,
       user_id,
-      room_style_id
+      room_style_id,
+      created_at,
+      updated_at
     ) VALUES ?
   `,
     [data]
