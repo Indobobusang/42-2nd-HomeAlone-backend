@@ -22,7 +22,7 @@ describe("GET posts", () => {
     await postFixture.createPosts(testPostData.posts);
     await postFixture.createPostImages(testPostData.postImages);
     await postFixture.createImageCoordinates(testPostData.imageCoordinate);
-    await postFixture.createScraps(testPostData.scarps);
+    await postFixture.createScraps(testPostData.scraps);
   });
 
   afterAll(async () => {
@@ -189,6 +189,7 @@ const getPostDetail = [
     scrapCount: "3",
     commentCount: "0",
     postImageUrl: "postImage01.url",
+    isScrapped: false,
     productInfo: [
       {
         name: "폭신 헤드 침대",

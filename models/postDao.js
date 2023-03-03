@@ -123,4 +123,24 @@ const doesPostExist = async (postId) => {
   }
 };
 
-module.exports = { getPosts, getPostDetail, doesPostExist };
+const isPostScrapped = async (postId, userId) => {
+  try {
+    const [result] = await appDataSource.query(
+      `SELECT EXISTS (
+        SELECT 
+        id AS scrapId
+      FROM scraps
+      WHERE post_id = ? AND user_id = ? 
+      ) AS isScrapped
+      `,
+      [postId, userId]
+    );
+
+    return !!parseInt(result.isScrapped);
+  } catch (err) {
+    err.statusCode = 400;
+    throw err;
+  }
+};
+
+module.exports = { getPosts, getPostDetail, doesPostExist, isPostScrapped };
