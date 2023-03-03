@@ -214,10 +214,41 @@ const scarps = [
   },
 ];
 
+const comments = [
+  {
+    id: 1,
+    content: "테스트 댓글 1번",
+    user_id: 1,
+    post_id: 1,
+    comment_id: null,
+    created_at: "2023-03-01 17:26:05",
+    updated_at: null,
+  },
+  {
+    id: 2,
+    content: "테스트 댓글 2번",
+    user_id: 2,
+    post_id: 1,
+    comment_id: null,
+    created_at: "2023-03-01 17:26:39",
+    updated_at: null,
+  },
+  {
+    id: 3,
+    content: "테스트 댓글 3번",
+    user_id: 3,
+    post_id: 1,
+    comment_id: null,
+    created_at: "2023-03-02 17:20:10",
+    updated_at: null,
+  },
+];
+
 module.exports = {
   roomStyles,
   posts,
   postImages,
   imageCoordinate,
   scarps,
+  comments,
 };

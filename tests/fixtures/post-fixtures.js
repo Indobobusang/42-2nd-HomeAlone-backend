@@ -115,10 +115,42 @@ const createScraps = (scrapList) => {
   );
 };
 
+const createComments = (commentList) => {
+  const data = [];
+
+  for (const comment of commentList) {
+    data.push([
+      comment.id,
+      comment.content,
+      comment.user_id,
+      comment.post_id,
+      comment.comment_id,
+      comment.created_at,
+      comment.updated_at,
+    ]);
+  }
+
+  return appDataSource.query(
+    `
+    INSERT INTO comments (
+      id,
+      content,
+      user_id,
+      post_id,
+      comment_id,
+      created_at,
+      updated_at
+    ) VALUES ?
+  `,
+    [data]
+  );
+};
+
 module.exports = {
   createRoomStyles,
   createPosts,
   createPostImages,
   createImageCoordinates,
   createScraps,
+  createComments,
 };
