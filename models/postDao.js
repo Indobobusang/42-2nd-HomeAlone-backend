@@ -1,5 +1,5 @@
 const { appDataSource } = require("./appDataSource");
-const { PostQueryBuilder } = require("./postQueryBuilder");
+const { PostQueryBuilder, roomStyleEnum } = require("./postQueryBuilder");
 
 const getPosts = async (filter) => {
   try {
@@ -123,6 +123,65 @@ const doesPostExist = async (postId) => {
   }
 };
 
+const createPost = async (userId, postData, image) => {
+  const queryrunner = appDataSource.createQueryRunner();
+  await queryrunner.connect();
+  await queryrunner.startTransaction();
+
+  try {
+    const post = await queryrunner.query(
+      `INSERT INTO posts(
+        title,
+        description,
+        room_style_id,
+        user_id
+      ) VALUES (?, ?, ?, ?)
+      `,
+      [
+        postData.title,
+        postData.description,
+        roomStyleEnum[postData.type],
+        userId,
+      ]
+    );
+
+    const postImage = await queryrunner.query(
+      `INSERT INTO post_images (
+        image_url,
+        post_id
+      ) VALUES (?, ?)
+      `,
+      [image.location, post.insertId]
+    );
+
+    if (postData.productInfo.length) {
+      const imageCoordinates = postData.productInfo.map((el) => {
+        return [el.pixelRow, el.pixelColumn, el.productId, postImage.insertId];
+      });
+
+      await queryrunner.query(
+        `INSERT INTO image_coordinates (
+          pixel_row,
+          pixel_column,
+          product_id,
+          post_image_id
+        ) VALUES ? 
+      `,
+        [imageCoordinates]
+      );
+    }
+
+    await queryrunner.commitTransaction();
+  } catch (err) {
+    await queryrunner.rollbackTransaction();
+    const error = new Error("CREATE POST FAILED");
+    error.statusCode = 400;
+    throw err;
+  } finally {
+    await queryrunner.release();
+  }
+};
+
 const isPostScrapped = async (postId, userId) => {
   try {
     const [result] = await appDataSource.query(
@@ -143,4 +202,10 @@ const isPostScrapped = async (postId, userId) => {
   }
 };
 
-module.exports = { getPosts, getPostDetail, doesPostExist, isPostScrapped };
+module.exports = {
+  getPosts,
+  getPostDetail,
+  doesPostExist,
+  createPost,
+  isPostScrapped,
+};

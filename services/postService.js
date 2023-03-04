@@ -2,20 +2,16 @@ const postDao = require("../models/postDao");
 const { DEFAULT_PAGE, DEFAULT_LIMIT } = require("../utils/constants");
 
 const getPosts = async (query) => {
-  const {
-    type,
-    sort,
-    perPage = DEFAULT_LIMIT,
-    page = DEFAULT_PAGE,
-    offset,
-  } = query;
+  const { type, sort, perPage, page, offset } = query;
 
-  const offsetSetting = offset ? offset : (page - 1) * perPage;
+  const pageSetting = +page ? +page : DEFAULT_PAGE;
+  const limitSetting = +perPage ? +perPage : DEFAULT_LIMIT;
+  const offsetSetting = +offset ? +offset : (pageSetting - 1) * limitSetting;
 
   const filter = {
     type,
     sort,
-    perPage,
+    perPage: limitSetting,
     offset: offsetSetting,
   };
 
@@ -36,4 +32,8 @@ const getPostDetail = async (postId, userId) => {
   return data;
 };
 
-module.exports = { getPosts, getPostDetail };
+const createPost = async (userId, postData, image) => {
+  return await postDao.createPost(userId, postData, image);
+};
+
+module.exports = { getPosts, getPostDetail, createPost };

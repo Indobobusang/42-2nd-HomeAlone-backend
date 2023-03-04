@@ -41,4 +41,10 @@ class PostQueryBuilder {
   }
 }
 
-module.exports = { PostQueryBuilder };
+const roomStyleEnum = Object.freeze({
+  MODERN: 1,
+  VINTAGE: 2,
+  LOVELY: 3,
+});
+
+module.exports = { PostQueryBuilder, roomStyleEnum };
