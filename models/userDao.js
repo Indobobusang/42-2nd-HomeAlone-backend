@@ -30,7 +30,7 @@ const createUser = async (kakaoId, nickname, profileImage, email) => {
 };
 
 const getUserBykakaoId = async (kakaoId) => {
-  const user = await appDataSource.query(
+  const [user] = await appDataSource.query(
     `SELECT
       u.id,
       u.nickname,
