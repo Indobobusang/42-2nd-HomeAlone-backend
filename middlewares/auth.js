@@ -2,6 +2,9 @@ const jwt = require("jsonwebtoken");
 const { catchAsync } = require("../utils/errorHandler");
 
 const loginRequired = catchAsync(async (req, res, next) => {
+  console.log("header", req.headers);
+  console.log("auth", req.headers.authorization);
+
   const token = req.headers.authorization;
   if (!token) {
     const error = new Error("TOKEN IS NOT EXIST!");
