@@ -29,6 +29,8 @@ describe("COMMENT TEST", () => {
     await appDataSource.destroy();
   });
 
+  const accesstoken = process.env.TEST_ACCESS_TOKEN;
+
   test("SUCCESS: GET COMMENTS BEFORE CREATING", async () => {
     const res = await request(app).get("/comments/post/1");
 
@@ -40,14 +42,26 @@ describe("COMMENT TEST", () => {
   test("SUCCESS: COMMENT CREATED", async () => {
     const res = await request(app)
       .post("/comments/post/1")
-      .send({ userId: 1, content: "This is test comment" });
+      .set("Authorization", `${accesstoken}`)
+      .send({ content: "This is test comment" });
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toEqual({ message: "success" });
   });
 
+  test("FAILED: CREATE COMMENT WITHOUT ACCESS TOKEN", async () => {
+    const res = await request(app)
+      .post("/comments/post/1")
+      .send({ content: "This is test comment" });
+
+    expect(res.statusCode).toEqual(400);
+    expect(res.body).toEqual({ message: "TOKEN IS NOT EXIST!" });
+  });
+
   test("FAILED: CREATE COMMENT WITHOUT CONTENTS", async () => {
-    const res = await request(app).post("/comments/post/1").send({ userId: 1 });
+    const res = await request(app)
+      .post("/comments/post/1")
+      .set("Authorization", `${accesstoken}`);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toEqual({ message: "KEY_ERROR" });
@@ -62,14 +76,18 @@ describe("COMMENT TEST", () => {
   });
 
   test("SUCCESS: DELETE COMMENT", async () => {
-    const res = await request(app).delete("/comments/4").send({ userId: 1 });
+    const res = await request(app)
+      .delete("/comments/4")
+      .set("Authorization", `${accesstoken}`);
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({ message: "success" });
   });
 
-  test("FAILED: DELETE COMMENT", async () => {
-    const res = await request(app).delete("/comments/4").send({ userId: 1 });
+  test("FAILED: DELETE COMMENT - COMMENT NOT EXIST", async () => {
+    const res = await request(app)
+      .delete("/comments/4")
+      .set("Authorization", `${accesstoken}`);
 
     expect(res.statusCode).toEqual(400);
     expect(res.body).toEqual({ message: "DELETE FAILED" });

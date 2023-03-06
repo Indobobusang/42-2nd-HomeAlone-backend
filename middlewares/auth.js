@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const catchAsync = require("../utils/errorHandler");
+const { catchAsync } = require("../utils/errorHandler");
 
 const loginRequired = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization;
@@ -17,7 +17,7 @@ const loginRequired = catchAsync(async (req, res, next) => {
     throw error;
   }
 
-  req.user = decode.id;
+  req.user = decode.userId;
   next();
 });
 

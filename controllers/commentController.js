@@ -11,7 +11,8 @@ const getComments = catchAsync(async (req, res) => {
 
 const postComment = catchAsync(async (req, res) => {
   const { postId } = req.params;
-  const { userId, content } = req.body;
+  const { content } = req.body;
+  const userId = req.user;
 
   if (!content) {
     const error = new Error("KEY_ERROR");
@@ -26,7 +27,7 @@ const postComment = catchAsync(async (req, res) => {
 
 const deleteComment = catchAsync(async (req, res) => {
   const { commentId } = req.params;
-  const { userId } = req.body;
+  const userId = req.user;
 
   await commentService.deleteComment(commentId, userId);
 
