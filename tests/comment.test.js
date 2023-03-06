@@ -84,7 +84,7 @@ describe("COMMENT TEST", () => {
     expect(res.body).toEqual({ message: "success" });
   });
 
-  test("FAILED: DELETE COMMENT", async () => {
+  test("FAILED: DELETE COMMENT - COMMENT NOT EXIST", async () => {
     const res = await request(app)
       .delete("/comments/4")
       .set("Authorization", `${accesstoken}`);
