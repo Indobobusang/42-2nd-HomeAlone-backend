@@ -53,3 +53,20 @@ const paymentMethodEnums = Object.freeze({
 });
 
 module.exports = { PostQueryBuilder, roomStyleEnum, paymentMethodEnums };
+const sortQueryBuilder = (sort) => {
+  let sortCondition = "";
+  switch (sort) {
+    case "best":
+      sortCondition = `ORDER BY r.rating DESC`;
+      break;
+    case "recent":
+      sortCondition = `ORDER BY r.created_at  DESC`;
+      break;
+    default:
+      sortCondition = "";
+      break;
+  }
+  return sortCondition;
+};
+
+module.exports = { PostQueryBuilder, roomStyleEnum, sortQueryBuilder };
