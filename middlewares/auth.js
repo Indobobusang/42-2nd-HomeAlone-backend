@@ -8,7 +8,7 @@ const loginRequired = catchAsync(async (req, res, next) => {
     error.statusCode = 400;
     throw error;
   }
-  const secretKey = process.env.SECRET_KET;
+  const secretKey = process.env.SECRET_KEY;
   const decode = jwt.verify(token, secretKey);
 
   if (!decode) {

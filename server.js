@@ -2,6 +2,7 @@ require("dotenv").config();
 const { appDataSource } = require("./models/appDataSource");
 
 const { createApp } = require("./app");
+const { appDataSource } = require("./models/appDataSource");
 
 const app = createApp();
 

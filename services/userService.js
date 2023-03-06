@@ -42,7 +42,7 @@ const kakaoLogin = async (kakaoToken) => {
 
   const user = await userDao.getUserBykakaoId(kakaoId);
 
-  const secretKey = process.env.SECRET_KET;
+  const secretKey = process.env.SECRET_KEY;
   const payLoad = { userId: user.id };
   const accessToken = jwt.sign(payLoad, secretKey);
   return accessToken;

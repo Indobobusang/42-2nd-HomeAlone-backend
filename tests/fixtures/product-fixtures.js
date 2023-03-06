@@ -57,4 +57,35 @@ const createProducts = (productList) => {
   );
 };
 
-module.exports = { createCategories, createProducts };
+const createReviews = (reviewList) => {
+  const data = [];
+
+  for (const review of reviewList) {
+    data.push([
+      review.id,
+      review.content,
+      review.image_url,
+      review.rating,
+      review.user_id,
+      review.product_id,
+      review.created_at,
+    ]);
+  }
+
+  return appDataSource.query(
+    `
+    INSERT INTO reviews (
+      id,
+      content,
+      image_url,
+      rating,
+      user_id,
+      product_id,
+      created_at
+    ) VALUES ?
+    `,
+    [data]
+  );
+};
+
+module.exports = { createCategories, createProducts, createReviews };

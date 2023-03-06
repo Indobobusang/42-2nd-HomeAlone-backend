@@ -64,7 +64,38 @@ const products = [
   },
 ];
 
+const reviews = [
+  {
+    id: 3,
+    content: "댓글3",
+    image_url: "Image_url3",
+    rating: 3,
+    user_id: 3,
+    product_id: 1,
+    created_at: "2023-03-06 01:55:33",
+  },
+  {
+    id: 2,
+    content: "댓글2",
+    image_url: "Image_url2",
+    rating: 4,
+    user_id: 2,
+    product_id: 1,
+    created_at: "2023-03-06 01:55:33",
+  },
+  {
+    id: 1,
+    content: "댓글1",
+    image_url: "Image_url1",
+    rating: 5,
+    user_id: 1,
+    product_id: 1,
+    created_at: "2023-03-06 01:55:33",
+  },
+];
+
 module.exports = {
   categories,
   products,
+  reviews,
 };
