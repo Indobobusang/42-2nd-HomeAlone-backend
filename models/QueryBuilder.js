@@ -47,4 +47,9 @@ const roomStyleEnum = Object.freeze({
   LOVELY: 3,
 });
 
-module.exports = { PostQueryBuilder, roomStyleEnum };
+const paymentMethodEnums = Object.freeze({
+  POINT: 1,
+  CARD: 2,
+});
+
+module.exports = { PostQueryBuilder, roomStyleEnum, paymentMethodEnums };
