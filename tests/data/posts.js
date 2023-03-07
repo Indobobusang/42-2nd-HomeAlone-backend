@@ -169,7 +169,7 @@ const imageCoordinate = [
   },
 ];
 
-const scarps = [
+const scraps = [
   {
     id: 1,
     user_id: 1,
@@ -249,6 +249,6 @@ module.exports = {
   posts,
   postImages,
   imageCoordinate,
-  scarps,
+  scraps,
   comments,
 };

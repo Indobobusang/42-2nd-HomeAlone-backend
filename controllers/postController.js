@@ -9,10 +9,11 @@ const getPosts = catchAsync(async (req, res) => {
 
 const getPostDetail = catchAsync(async (req, res) => {
   const { postId } = req.params;
+  const userId = req.user;
 
-  const data = await postService.getPostDetail(postId);
+  const data = await postService.getPostDetail(postId, userId);
 
-  return res.status(200).json({ data });
+  return res.status(200).json({ data: [data] });
 });
 
 module.exports = { getPosts, getPostDetail };
