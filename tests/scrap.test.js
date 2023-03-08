@@ -46,7 +46,7 @@ describe("SCRAP TEST", () => {
     const res = await request(app).get("/posts/1");
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.data[0].isScrapped).toEqual(false);
+    expect(res.body.data.isScrapped).toEqual(false);
   });
 
   test("SUCCESS: IS POST SCRAPPED - LOGIN USER BEFORE SCRAP", async () => {
@@ -55,7 +55,7 @@ describe("SCRAP TEST", () => {
       .set("Authorization", accesstoken);
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.data[0].isScrapped).toEqual(false);
+    expect(res.body.data.isScrapped).toEqual(false);
   });
 
   test("SUCCESS: POST SCRAP", async () => {
@@ -74,7 +74,7 @@ describe("SCRAP TEST", () => {
       .set("Authorization", accesstoken);
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.data[0].isScrapped).toEqual(true);
+    expect(res.body.data.isScrapped).toEqual(true);
   });
 
   test("FAILED: POST SCRAP - ALREADY SCRAPPED", async () => {

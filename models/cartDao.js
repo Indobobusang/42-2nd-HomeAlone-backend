@@ -11,7 +11,7 @@ const getCart = async (userId) => {
         p.discount,
         p.shipping_fee AS shippingFee,
         p.image_url AS imageUrl,
-        IF(c.is_selected, 'true', 'false') AS isSelected,
+        c.is_selected AS isSelected,
         c.quantity
       FROM carts c
       INNER JOIN products p ON p.id = c.product_id
@@ -71,11 +71,17 @@ const selectCart = async (userId, selectedItems) => {
 };
 
 const deleteCart = async (userId, selectedItems) => {
-  await appDataSource.query(
-    `DELETE FROM carts
+  try {
+    return await appDataSource.query(
+      `DELETE FROM carts
     WHERE id IN ( ? ) AND user_id = ?`,
-    [selectedItems, userId]
-  );
+      [selectedItems, userId]
+    );
+  } catch (err) {
+    const error = new Error("DELETE FAILED");
+    error.statusCode = 400;
+    throw error;
+  }
 };
 
 module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };

@@ -11,10 +11,8 @@ const getCart = catchAsync(async (req, res) => {
 
 const createOrUpdateCart = catchAsync(async (req, res) => {
   const userId = req.user;
-  const { productId, quantity } = req.body;
+  const { productId, quantity } = req.body.data;
   const { fromCart } = req.query;
-
-  console.log(req.body);
 
   await cartService.createOrUpdateCart(userId, productId, quantity, fromCart);
 
@@ -23,11 +21,16 @@ const createOrUpdateCart = catchAsync(async (req, res) => {
 
 const selectCart = catchAsync(async (req, res) => {
   const userId = req.user;
-  const userCartList = req.body.data;
 
-  const selectedItems = userCartList
-    .filter((el) => el.isSelected === true)
-    .map((el) => [el.cartId]);
+  const selectedItems = req.body.data
+    .filter((el) => el.isSelected)
+    .map((el) => el.cartId);
+
+  if (!selectedItems.length) {
+    const error = new Error("SELECT ITEM TO ORDER");
+    error.statusCode = 400;
+    throw error;
+  }
 
   await cartService.selectCart(userId, selectedItems);
 
@@ -36,15 +39,20 @@ const selectCart = catchAsync(async (req, res) => {
 
 const deleteCart = catchAsync(async (req, res) => {
   const userId = req.user;
-  const userCartList = req.body.data;
 
-  const selectedItems = userCartList
-    .filter((el) => el.isSelected === true)
-    .map((el) => [el.cartId]);
+  const selectedItems = req.body.data
+    .filter((el) => el.isSelected)
+    .map((el) => el.cartId);
 
-  await cartService.deleteCart(userId, selectedItems);
+  if (!selectedItems.length) {
+    const error = new Error("SELECT ITEM TO DELETE");
+    error.statusCode = 400;
+    throw error;
+  }
 
-  return res.status(200).json({ message: "success" });
+  const data = await cartService.deleteCart(userId, selectedItems);
+
+  return res.status(200).json({ data });
 });
 
 module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };

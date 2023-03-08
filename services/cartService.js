@@ -18,7 +18,9 @@ const selectCart = async (userId, selectedItems) => {
 };
 
 const deleteCart = async (userId, selectedItems) => {
-  return await cartDao.deleteCart(userId, selectedItems);
+  await cartDao.deleteCart(userId, selectedItems);
+
+  return await cartDao.getCart(userId);
 };
 
 module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };

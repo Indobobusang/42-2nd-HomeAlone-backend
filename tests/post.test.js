@@ -177,40 +177,37 @@ const getPostsWithSortType = [
   },
 ];
 
-const getPostDetail = [
-  {
-    id: 1,
-    title: "모던 집들이 포스트",
-    createdAt: "2023-02-27T11:30:14.000Z",
-    description: "모던한 인테리어로 꾸며봤습니다",
-    nickname: "testUser01",
-    profileImage: "testProfileImage01.url",
-    type: "modern",
-    scrapCount: "3",
-    commentCount: "0",
-    postImageUrl: "postImage01.url",
-    isScrapped: false,
-    productInfo: [
-      {
-        name: "폭신 헤드 침대",
-        pixelRow: 30,
-        productId: 1,
-        pixelColumn: 50,
-        sellingPrice: 150000,
-        productImageUrl: "productBedImage.url",
-      },
-      {
-        name: "모던 블랙 테이블",
-        pixelRow: 70,
-        productId: 2,
-        pixelColumn: 70,
-        sellingPrice: 28000,
-        productImageUrl: "productTableImage.url",
-      },
-    ],
-  },
-];
-
+const getPostDetail = {
+  id: 1,
+  title: "모던 집들이 포스트",
+  createdAt: "2023-02-27T11:30:14.000Z",
+  description: "모던한 인테리어로 꾸며봤습니다",
+  nickname: "testUser01",
+  profileImage: "testProfileImage01.url",
+  type: "modern",
+  scrapCount: "3",
+  commentCount: "0",
+  postImageUrl: "postImage01.url",
+  isScrapped: false,
+  productInfo: [
+    {
+      name: "폭신 헤드 침대",
+      pixelRow: 30,
+      productId: 1,
+      pixelColumn: 50,
+      sellingPrice: 150000,
+      productImageUrl: "productBedImage.url",
+    },
+    {
+      name: "모던 블랙 테이블",
+      pixelRow: 70,
+      productId: 2,
+      pixelColumn: 70,
+      sellingPrice: 28000,
+      productImageUrl: "productTableImage.url",
+    },
+  ],
+};
 const getPostsWithSortPageLimit = [
   {
     commentCount: "0",
