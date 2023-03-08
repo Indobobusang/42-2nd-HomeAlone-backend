@@ -16,6 +16,7 @@ const getCart = async (userId) => {
       FROM carts c
       INNER JOIN products p ON p.id = c.product_id
       WHERE c.user_id = ?
+      ORDER BY c.id DESC;
       `,
       [userId]
     );

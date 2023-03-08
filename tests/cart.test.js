@@ -169,8 +169,7 @@ describe("PRODUCT DETAIL", () => {
       .set("Authorization", `${accesstoken}`)
       .send(selectedItems);
 
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.data).toEqual(getCartItemAfterDelete);
+    expect(res.statusCode).toEqual(204);
   });
 });
 
@@ -204,6 +203,17 @@ const getCartItemAfterQuantityUpdate = [
 
 const getCartItemAfterCreateAnother = [
   {
+    cartId: 4,
+    discount: "2000.00",
+    imageUrl: "productTableImage.url",
+    isSelected: 1,
+    name: "모던 블랙 테이블",
+    price: "30000.00",
+    productId: 2,
+    quantity: 1,
+    shippingFee: "0.00",
+  },
+  {
     cartId: 1,
     discount: "50000.00",
     imageUrl: "productBedImage.url",
@@ -214,6 +224,9 @@ const getCartItemAfterCreateAnother = [
     quantity: 1,
     shippingFee: "3000.00",
   },
+];
+
+const getCartItemAfterPatchIsSelected = [
   {
     cartId: 4,
     discount: "2000.00",
@@ -225,9 +238,6 @@ const getCartItemAfterCreateAnother = [
     quantity: 1,
     shippingFee: "0.00",
   },
-];
-
-const getCartItemAfterPatchIsSelected = [
   {
     cartId: 1,
     discount: "50000.00",
@@ -238,17 +248,6 @@ const getCartItemAfterPatchIsSelected = [
     productId: 1,
     quantity: 1,
     shippingFee: "3000.00",
-  },
-  {
-    cartId: 4,
-    discount: "2000.00",
-    imageUrl: "productTableImage.url",
-    isSelected: 1,
-    name: "모던 블랙 테이블",
-    price: "30000.00",
-    productId: 2,
-    quantity: 1,
-    shippingFee: "0.00",
   },
 ];
 
@@ -277,17 +276,3 @@ const selectedItems = {
     },
   ],
 };
-
-const getCartItemAfterDelete = [
-  {
-    cartId: 1,
-    discount: "50000.00",
-    imageUrl: "productBedImage.url",
-    isSelected: 0,
-    name: "폭신 헤드 침대",
-    price: "200000.00",
-    productId: 1,
-    quantity: 1,
-    shippingFee: "3000.00",
-  },
-];

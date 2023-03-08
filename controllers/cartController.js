@@ -50,9 +50,9 @@ const deleteCart = catchAsync(async (req, res) => {
     throw error;
   }
 
-  const data = await cartService.deleteCart(userId, selectedItems);
+  await cartService.deleteCart(userId, selectedItems);
 
-  return res.status(200).json({ data });
+  return res.status(204).json();
 });
 
 module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };
