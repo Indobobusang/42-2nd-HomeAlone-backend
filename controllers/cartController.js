@@ -11,6 +11,7 @@ const getCart = catchAsync(async (req, res) => {
 
 const createOrUpdateCart = catchAsync(async (req, res) => {
   const userId = req.user;
+
   const { productId, quantity } = req.body.data;
   const { fromCart } = req.query;
 
@@ -50,9 +51,9 @@ const deleteCart = catchAsync(async (req, res) => {
     throw error;
   }
 
-  await cartService.deleteCart(userId, selectedItems);
+  const data = await cartService.deleteCart(userId, selectedItems);
 
-  return res.status(204).json();
+  return res.status(200).json({ data });
 });
 
 module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };

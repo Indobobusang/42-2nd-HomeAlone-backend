@@ -88,7 +88,7 @@ describe("PRODUCT DETAIL", () => {
 
   test("SUCCESS: UPDATE CART ITEM - FROM CART", async () => {
     const res = await request(app)
-      .post("/carts?fromCart=true")
+      .post("/carts?fromCart")
       .set("Authorization", `${accesstoken}`)
       .send({ data: { productId: 1, quantity: 1 } });
 
@@ -169,7 +169,8 @@ describe("PRODUCT DETAIL", () => {
       .set("Authorization", `${accesstoken}`)
       .send(selectedItems);
 
-    expect(res.statusCode).toEqual(204);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.data).toEqual(getCartItemAfterDelete);
   });
 });
 
@@ -238,6 +239,20 @@ const getCartItemAfterPatchIsSelected = [
     quantity: 1,
     shippingFee: "0.00",
   },
+  {
+    cartId: 1,
+    discount: "50000.00",
+    imageUrl: "productBedImage.url",
+    isSelected: 0,
+    name: "폭신 헤드 침대",
+    price: "200000.00",
+    productId: 1,
+    quantity: 1,
+    shippingFee: "3000.00",
+  },
+];
+
+const getCartItemAfterDelete = [
   {
     cartId: 1,
     discount: "50000.00",

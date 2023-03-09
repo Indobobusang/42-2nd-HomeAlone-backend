@@ -28,7 +28,7 @@ const getCart = async (userId) => {
 
 const createOrUpdateCart = async (userId, productId, quantity, fromCart) => {
   try {
-    const updateClauses = fromCart ? `?` : `quantity + ?`;
+    const updateClauses = fromCart === "" ? `?` : `quantity + ?`;
 
     return await appDataSource.query(
       `INSERT INTO carts
@@ -48,7 +48,7 @@ const createOrUpdateCart = async (userId, productId, quantity, fromCart) => {
   }
 };
 
-const selectCart = async (userId, selectedItems) => {
+const clearSelectedItems = async (userId) => {
   try {
     await appDataSource.query(
       `UPDATE carts
@@ -57,12 +57,19 @@ const selectCart = async (userId, selectedItems) => {
     `,
       [userId]
     );
+  } catch (err) {
+    err.statusCode = 400;
+    throw err;
+  }
+};
 
-    await appDataSource.query(
+const selectCartItems = async (userId, selectedItems) => {
+  try {
+    return await appDataSource.query(
       `UPDATE carts
-      SET is_selected = true
-      WHERE id IN ( ? ) AND user_id = ?
-    `,
+         SET is_selected = true
+         WHERE id IN ( ? ) AND user_id = ?
+        `,
       [selectedItems, userId]
     );
   } catch (err) {
@@ -85,4 +92,10 @@ const deleteCart = async (userId, selectedItems) => {
   }
 };
 
-module.exports = { getCart, createOrUpdateCart, selectCart, deleteCart };
+module.exports = {
+  getCart,
+  createOrUpdateCart,
+  clearSelectedItems,
+  selectCartItems,
+  deleteCart,
+};
