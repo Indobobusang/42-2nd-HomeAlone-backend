@@ -1,4 +1,5 @@
 const postDao = require("../models/postDao");
+const userDao = require("../models/userDao");
 const { DEFAULT_PAGE, DEFAULT_LIMIT } = require("../utils/constants");
 
 const getPosts = async (query) => {
@@ -29,7 +30,9 @@ const getPostDetail = async (postId, userId) => {
   const [data] = await postDao.getPostDetail(postId);
   data.isScrapped = await postDao.isPostScrapped(postId, userId);
 
-  return data;
+  const user = await userDao.getUserByUserId(userId);
+
+  return { data, user };
 };
 
 const createPost = async (userId, postData, image) => {
