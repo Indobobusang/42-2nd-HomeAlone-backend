@@ -1,5 +1,5 @@
 const { appDataSource } = require("./appDataSource");
-const { PostQueryBuilder, roomStyleEnum } = require("./postQueryBuilder");
+const { PostQueryBuilder, roomStyleEnum } = require("./QueryBuilder");
 
 const getPosts = async (filter) => {
   try {
