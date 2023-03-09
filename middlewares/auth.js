@@ -25,7 +25,7 @@ const loginRequired = catchAsync(async (req, res, next) => {
 const getUserIdIfReqestHasToken = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization;
 
-  if (token && token !== "undefined") {
+  if (token && token !== "undefined" && token !== "null") {
     const secretKey = process.env.SECRET_KEY;
     const decode = jwt.verify(token, secretKey);
     req.user = decode.userId;
