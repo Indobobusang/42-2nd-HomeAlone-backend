@@ -15,7 +15,7 @@ const getProductById = async (productId) => {
       COUNT(r.id) AS ratingAmount,
       (SUM(r.rating) / COUNT(r.id)) AS averageRatings
     FROM products AS p
-    INNER JOIN reviews AS r ON r.product_id = p.id
+    LEFT JOIN reviews AS r ON r.product_id = p.id
     WHERE p.id = ?`,
     [productId]
   );
