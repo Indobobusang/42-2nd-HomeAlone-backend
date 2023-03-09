@@ -14,7 +14,7 @@ const getPostDetail = catchAsync(async (req, res) => {
 
   const data = await postService.getPostDetail(postId, userId);
 
-  return res.status(200).json({ data: [data] });
+  return res.status(200).json({ data });
 });
 
 const createPost = catchAsync(async (req, res) => {
@@ -28,19 +28,24 @@ const createPost = catchAsync(async (req, res) => {
 
   try {
     const userId = req.user;
-    const { title, description, type, productInfo } = req.body;
 
-    if (!title || !type || !productInfo) {
+    const { title, description, type, productInfo, marker } = req.body;
+
+    if (!title || !type) {
       const error = new Error("KEY ERROR");
       error.statusCode = 400;
       throw error;
     }
 
+    const [productMarker] = JSON.parse(productInfo);
+    productMarker.pixelRow = JSON.parse(marker)[0].pixelRow;
+    productMarker.pixelColumn = JSON.parse(marker)[0].pixelColumn;
+
     const postData = {
       title,
       description,
       type: type.toUpperCase(),
-      productInfo: JSON.parse(productInfo),
+      productInfo: [productMarker],
     };
 
     await postService.createPost(userId, postData, image);
