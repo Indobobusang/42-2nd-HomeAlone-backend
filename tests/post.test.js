@@ -40,6 +40,8 @@ describe("GET posts", () => {
     await appDataSource.destroy();
   });
 
+  const accesstoken = process.env.TEST_ACCESS_TOKEN;
+
   test("SUCCESS: GET POSTS WITHOUT QUERY PARAMS", async () => {
     const response = await request(app).get("/posts").query({});
 
@@ -67,10 +69,19 @@ describe("GET posts", () => {
     expect(response.body.data).toEqual(getPostsWithSortPageLimit);
   });
 
-  test("SUCCESS: GET POSTS DETAIL", async () => {
+  test("SUCCESS: GET POSTS DETAIL - WITHOUT LOGIN", async () => {
     const response = await request(app).get("/posts/1");
     expect(response.statusCode).toEqual(200);
-    expect(response.body.data).toEqual(getPostDetail);
+    expect(response.body).toEqual(getPostDetailLogout);
+  });
+
+  test("SUCCESS: GET POSTS DETAIL - WITH LOGIN", async () => {
+    const response = await request(app)
+      .get("/posts/1")
+      .set("Authorization", `${accesstoken}`);
+
+    expect(response.statusCode).toEqual(200);
+    expect(response.body).toEqual(getPostDetailLogin);
   });
 
   test("FAILED: POST DOES NOT EXIST", async () => {
@@ -177,37 +188,80 @@ const getPostsWithSortType = [
   },
 ];
 
-const getPostDetail = {
-  id: 1,
-  title: "모던 집들이 포스트",
-  createdAt: "2023-02-27T11:30:14.000Z",
-  description: "모던한 인테리어로 꾸며봤습니다",
-  nickname: "testUser01",
-  profileImage: "testProfileImage01.url",
-  type: "modern",
-  scrapCount: "3",
-  commentCount: "0",
-  postImageUrl: "postImage01.url",
-  isScrapped: false,
-  productInfo: [
-    {
-      name: "폭신 헤드 침대",
-      pixelRow: 30,
-      productId: 1,
-      pixelColumn: 50,
-      sellingPrice: 150000,
-      productImageUrl: "productBedImage.url",
-    },
-    {
-      name: "모던 블랙 테이블",
-      pixelRow: 70,
-      productId: 2,
-      pixelColumn: 70,
-      sellingPrice: 28000,
-      productImageUrl: "productTableImage.url",
-    },
-  ],
+const getPostDetailLogout = {
+  data: {
+    id: 1,
+    title: "모던 집들이 포스트",
+    createdAt: "2023-02-27T11:30:14.000Z",
+    description: "모던한 인테리어로 꾸며봤습니다",
+    nickname: "testUser01",
+    profileImage: "testProfileImage01.url",
+    type: "modern",
+    scrapCount: "3",
+    commentCount: "0",
+    postImageUrl: "postImage01.url",
+    isScrapped: false,
+    productInfo: [
+      {
+        name: "폭신 헤드 침대",
+        pixelRow: 30,
+        productId: 1,
+        pixelColumn: 50,
+        sellingPrice: 150000,
+        productImageUrl: "productBedImage.url",
+      },
+      {
+        name: "모던 블랙 테이블",
+        pixelRow: 70,
+        productId: 2,
+        pixelColumn: 70,
+        sellingPrice: 28000,
+        productImageUrl: "productTableImage.url",
+      },
+    ],
+  },
 };
+
+const getPostDetailLogin = {
+  data: {
+    id: 1,
+    title: "모던 집들이 포스트",
+    createdAt: "2023-02-27T11:30:14.000Z",
+    description: "모던한 인테리어로 꾸며봤습니다",
+    nickname: "testUser01",
+    profileImage: "testProfileImage01.url",
+    type: "modern",
+    scrapCount: "3",
+    commentCount: "0",
+    postImageUrl: "postImage01.url",
+    isScrapped: true,
+    productInfo: [
+      {
+        name: "폭신 헤드 침대",
+        pixelRow: 30,
+        productId: 1,
+        pixelColumn: 50,
+        sellingPrice: 150000,
+        productImageUrl: "productBedImage.url",
+      },
+      {
+        name: "모던 블랙 테이블",
+        pixelRow: 70,
+        productId: 2,
+        pixelColumn: 70,
+        sellingPrice: 28000,
+        productImageUrl: "productTableImage.url",
+      },
+    ],
+  },
+  user: {
+    id: 1,
+    nickname: "testUser01",
+    email: "test01@email.com",
+    profileImage: "testProfileImage01.url",
+  },
+};
+
 const getPostsWithSortPageLimit = [
   {
     commentCount: "0",

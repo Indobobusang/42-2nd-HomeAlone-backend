@@ -12,9 +12,9 @@ const getPostDetail = catchAsync(async (req, res) => {
   const { postId } = req.params;
   const userId = req.user;
 
-  const data = await postService.getPostDetail(postId, userId);
+  const { data, user } = await postService.getPostDetail(postId, userId);
 
-  return res.status(200).json({ data });
+  return res.status(200).json({ data, user });
 });
 
 const createPost = catchAsync(async (req, res) => {

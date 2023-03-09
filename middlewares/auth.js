@@ -4,7 +4,7 @@ const { catchAsync } = require("../utils/errorHandler");
 const loginRequired = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization;
 
-  if (!token || token === "undefined") {
+  if (!token || token === "undefined" || token === "null") {
     const error = new Error("TOKEN IS NOT EXIST!");
     error.statusCode = 400;
     throw error;
