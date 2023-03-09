@@ -14,7 +14,6 @@ const getReviewByProductId = catchAsync(async (req, res) => {
 });
 
 const postProductReview = catchAsync(async (req, res) => {
-  console.log("body", req.body);
   const image = req.file;
 
   if (!image) {
@@ -25,7 +24,7 @@ const postProductReview = catchAsync(async (req, res) => {
 
   try {
     const userId = req.user;
-    const { productId, rating, content } = JSON.parse(req.body.data);
+    const { productId, rating, content } = req.body;
 
     if (!rating || !image || !content) {
       const error = new Error("KEY_ERROR");
