@@ -48,7 +48,8 @@ const getUserByUserId = async (userId) => {
     `SELECT
       id,
       nickname,
-      profile_image AS profileImage 
+      profile_image AS profileImage,
+      email
     FROM users 
     WHERE id = ?`,
     [userId]
