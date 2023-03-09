@@ -19,9 +19,9 @@ const postScrap = catchAsync(async (req, res) => {
 const getScraps = catchAsync(async (req, res) => {
   const userId = req.user;
 
-  const data = await scrapService.getScraps(userId);
+  const { collections, user } = await scrapService.getScraps(userId);
 
-  return res.status(200).json({ data });
+  return res.status(200).json({ collections, user });
 });
 
 const deleteScrap = catchAsync(async (req, res) => {
