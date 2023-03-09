@@ -93,9 +93,14 @@ describe("SCRAP TEST", () => {
       .set("Authorization", accesstoken);
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.data).toEqual([
-      { id: 1, imageUrl: "postImage01.url", scrapId: 1 },
-    ]);
+    expect(res.body).toEqual({
+      collections: [{ id: 1, imageUrl: "postImage01.url", scrapId: 1 }],
+      user: {
+        id: 1,
+        nickname: "testUser01",
+        profileImage: "testProfileImage01.url",
+      },
+    });
   });
 
   test("FAILED: DELETE SCRAP - KEY ERROR", async () => {

@@ -43,8 +43,24 @@ const getUserBykakaoId = async (kakaoId) => {
   return user;
 };
 
+const getUserByUserId = async (userId) => {
+  const [user] = await appDataSource.query(
+    `SELECT
+      id,
+      nickname,
+      profile_image AS profileImage,
+      email
+    FROM users 
+    WHERE id = ?`,
+    [userId]
+  );
+
+  return user;
+};
+
 module.exports = {
   checkUserByKakaoId,
   createUser,
   getUserBykakaoId,
+  getUserByUserId,
 };
