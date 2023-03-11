@@ -23,18 +23,20 @@
 
 ### 데모 이미지
 
-![ERD 모델링](https://user-images.githubusercontent.com/120305083/224248281-b3b70387-2b6b-4029-b544-b2ef16bf46a0.png)
 
-![main](https://user-images.githubusercontent.com/120364901/224241210-6892776e-ef21-4321-9d29-231adfe8b887.gif)
-![posting](https://user-images.githubusercontent.com/120364901/224242945-7676dc01-e987-48da-b521-b8592619a4fd.gif)
-![homewarming list](https://user-images.githubusercontent.com/120364901/224246136-8bf96a54-7d88-41c5-aa93-46a29214f3c4.gif)
-![homewarming](https://user-images.githubusercontent.com/120364901/224245430-98e887b4-8fa4-47cb-a671-b53c2dbafc2a.gif)
-![collections](https://user-images.githubusercontent.com/120364901/224243600-b9e9e04e-07d0-4c45-a28e-ff0d7fb4607b.gif)
-![소셜로그인](https://user-images.githubusercontent.com/120364901/224242209-05b96158-44f9-434d-ade2-9bee2c2b2443.gif)
-![상품상세 상품담기](https://user-images.githubusercontent.com/120364901/224245052-e609b98a-1a7e-4964-9035-5fc3f233ab84.gif)
-![cart](https://user-images.githubusercontent.com/120364901/224244090-152c4866-ac14-4104-84d5-63207e57f561.gif)
-![payment](https://user-images.githubusercontent.com/120364901/224244520-51a328d0-2089-4ac0-aa5d-dd1979a17e05.gif)
-![상세페이지 리뷰쓰기](https://user-images.githubusercontent.com/120364901/224244837-abd0f6ef-829b-4616-8a2a-fa9c4648d572.gif)
+|                | 데모 영상 |
+| :--------------: | :----------------: | 
+| 메인 페이지 |![main](https://user-images.githubusercontent.com/120364901/224241210-6892776e-ef21-4321-9d29-231adfe8b887.gif)|
+| 글쓰기 |![posting](https://user-images.githubusercontent.com/120364901/224242945-7676dc01-e987-48da-b521-b8592619a4fd.gif)|
+| 포스팅 리스트 |![homewarming list](https://user-images.githubusercontent.com/120364901/224246136-8bf96a54-7d88-41c5-aa93-46a29214f3c4.gif)|
+| 포스팅 상세 |![homewarming](https://user-images.githubusercontent.com/120364901/224245430-98e887b4-8fa4-47cb-a671-b53c2dbafc2a.gif)|
+| 즐겨찾기 |![collections](https://user-images.githubusercontent.com/120364901/224243600-b9e9e04e-07d0-4c45-a28e-ff0d7fb4607b.gif)|
+| 소셜 로그인 |![소셜로그인](https://user-images.githubusercontent.com/120364901/224242209-05b96158-44f9-434d-ade2-9bee2c2b2443.gif)|
+| 상품 상세 |![상품상세 상품담기](https://user-images.githubusercontent.com/120364901/224245052-e609b98a-1a7e-4964-9035-5fc3f233ab84.gif)|
+| 장바구니 |![cart](https://user-images.githubusercontent.com/120364901/224244090-152c4866-ac14-4104-84d5-63207e57f561.gif)|
+| 결제 |![payment](https://user-images.githubusercontent.com/120364901/224244520-51a328d0-2089-4ac0-aa5d-dd1979a17e05.gif)|
+| 리뷰 작성 |![상세페이지 리뷰쓰기](https://user-images.githubusercontent.com/120364901/224244837-abd0f6ef-829b-4616-8a2a-fa9c4648d572.gif)|
+
 
 <br>
 
@@ -83,6 +85,7 @@ Communication
 
 
 ## 구현 기능
+![ERD 모델링](https://user-images.githubusercontent.com/120305083/224248281-b3b70387-2b6b-4029-b544-b2ef16bf46a0.png)
 
 |                | 황수영🐱                     |             박준우🐷                    | 공통 |
 | -------------- | :---------------- | :-------------------- | :-------------------- | 
